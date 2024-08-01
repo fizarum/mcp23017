@@ -116,7 +116,7 @@ bool MCPInit(const MCPDevice_t *device) {
     ESP_LOGE(TAG, "init failed: %d", initResult);
     return false;
   } else {
-    ESP_LOGI(TAG, "init ok!");
+    ESP_LOGD(TAG, "init ok!");
     return true;
   }
 }
@@ -125,7 +125,7 @@ bool MCPWriteConfig(const MCPDevice_t *device, uint8_t reg, uint8_t value) {
   esp_err_t result =
       I2CMasterWriteReg(device->portNumber, device->address, reg, &value, 1);
   if (result == ESP_OK) {
-    ESP_LOGI(TAG, ">> [0x%x] = 0x%x OK", reg, value);
+    ESP_LOGD(TAG, ">> [0x%x] = 0x%x OK", reg, value);
     return true;
   }
   ESP_LOGE(TAG, ">> [0x%x] = 0x%x Failed: %d", reg, value, result);
@@ -137,7 +137,7 @@ bool MCPReadPort(const MCPDevice_t *device, uint8_t reg, uint8_t *storage) {
       I2CMasterReadReg(device->portNumber, device->address, reg, storage, 1);
 
   if (result == ESP_OK) {
-    ESP_LOGI(TAG, "<< [0x%x] = 0x%x OK", reg, *storage);
+    ESP_LOGD(TAG, "<< [0x%x] = 0x%x OK", reg, *storage);
     return true;
   }
   ESP_LOGE(TAG, "<< [0x%x] = 0x%x Failed: %d", reg, *storage, result);
