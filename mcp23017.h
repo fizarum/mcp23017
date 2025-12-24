@@ -1,5 +1,4 @@
-#ifndef MCP23017_H
-#define MCP23017_H
+#pragma once
 
 #ifdef __cplusplus
 extern "C" {
@@ -84,7 +83,7 @@ static const uint8_t MCP_REG_OLATA = 0x14;
 // Provides access to the port B output latches.
 static const uint8_t MCP_REG_OLATB = 0x15;
 
-esp_err_t I2CMasterInit(const MCPDevice_t *device);
+esp_err_t I2CMasterInit(const MCPDevice_t* device);
 
 /**
  * @brief Master device write data to slave.
@@ -103,7 +102,7 @@ esp_err_t I2CMasterInit(const MCPDevice_t *device);
  *
  */
 esp_err_t I2CMasterWriteReg(i2c_port_t i2cPortNum, uint8_t i2cAddrress,
-                            uint8_t reg, uint8_t *value, size_t size);
+                            uint8_t reg, uint8_t* value, size_t size);
 
 /**
  * @brief Master device read registers from slave.
@@ -122,17 +121,15 @@ esp_err_t I2CMasterWriteReg(i2c_port_t i2cPortNum, uint8_t i2cAddrress,
  *
  */
 esp_err_t I2CMasterReadReg(i2c_port_t i2cPortNum, uint8_t i2cAddrress,
-                           uint8_t reg, uint8_t *storage, size_t size);
+                           uint8_t reg, uint8_t* storage, size_t size);
 
 // mcp23017 high level API
-bool MCPInit(const MCPDevice_t *device);
-bool MCPWriteConfig(const MCPDevice_t *device, uint8_t reg, uint8_t value);
+bool MCPInit(const MCPDevice_t* device);
+bool MCPWriteConfig(const MCPDevice_t* device, uint8_t reg, uint8_t value);
 
-bool MCPReadPort(const MCPDevice_t *device, uint8_t reg, uint8_t *storage);
-bool MCPReadAllPorts(const MCPDevice_t *device, uint16_t *storage);
+bool MCPReadPort(const MCPDevice_t* device, uint8_t reg, uint8_t* storage);
+bool MCPReadAllPorts(const MCPDevice_t* device, uint16_t* storage);
 
 #ifdef __cplusplus
 }
 #endif
-
-#endif  // MCP23017_H
